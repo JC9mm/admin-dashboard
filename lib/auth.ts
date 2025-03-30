@@ -1,6 +1,15 @@
 import NextAuth from 'next-auth';
 import GitHub from 'next-auth/providers/github';
 
+const registeredRedirectUris = [
+  'http://localhost:3000',
+  'https://your-production-url.com'
+];
+
+function validateRedirectUri(redirectUri) {
+  return registeredRedirectUris.includes(redirectUri);
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     GitHub({
@@ -30,4 +39,12 @@ export const refreshToken = async () => {
     localStorage.clear();
     return null;
   }
+};
+
+export const signInWithValidation = async (provider, options) => {
+  const { redirectTo } = options;
+  if (!validateRedirectUri(redirectTo)) {
+    throw new Error("The provided value for the input parameter 'redirect_uri' is not valid.");
+  }
+  return signIn(provider, options);
 };

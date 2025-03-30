@@ -63,6 +63,15 @@ pnpm dev
 
 You should now be able to access the application at http://localhost:3000.
 
+## Running a Local Server
+
+To run a local server for this project, follow these steps:
+
+1. Ensure you have Node.js and npm installed on your machine.
+2. Create a `.env` file in the root directory of the project and populate it with the necessary environment variables as shown in the `.env.example` file.
+3. Install the project dependencies by running `npm install` in the root directory.
+4. Start the local server by running `npm run dev`.
+
 ## Troubleshooting Common Issues
 
 ### Database Connection Error

@@ -25,7 +25,7 @@ export const refreshToken = async () => {
   const refresh_token = localStorage.getItem("refresh_token");
   if (!refresh_token) return null;
 
-  const res = await fetch("https://api.jorgecastillo.net/auth/refresh", {
+  const res = await fetch("https://jorgecastillo.net/auth/refresh", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refresh_token }),

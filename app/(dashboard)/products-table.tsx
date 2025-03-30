@@ -24,14 +24,15 @@ import { Button } from '@/components/ui/button';
 export function ProductsTable({
   products,
   offset,
-  totalProducts
+  totalProducts,
+  searchParams
 }: {
   products: SelectProduct[];
   offset: number;
   totalProducts: number;
+  searchParams: { q: string; offset: string }
 }) {
   let router = useRouter();
-  let searchParams = useSearchParams();
   let productsPerPage = 5;
 
   function prevPage() {

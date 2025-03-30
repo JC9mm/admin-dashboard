@@ -1,18 +1,29 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { File, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductsTable } from './products-table';
-import { getProducts } from '@/lib/db';
 
-export default async function ProductsPage(
-  searchParams: { q: string; offset: string }
-) {
-  const search = searchParams.q ?? '';
-  const offset = searchParams.offset ?? 0;
-  const { products, newOffset, totalProducts } = await getProducts(
-    search,
-    Number(offset)
-  );
+export default function ProductsPage({ searchParams }: { searchParams: { q: string; offset: string } }) {
+  const [products, setProducts] = useState([]);
+  const [newOffset, setNewOffset] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const search = searchParams.q ?? '';
+      const offset = searchParams.offset ?? 0;
+      const response = await fetch(`/api/products?search=${search}&offset=${offset}`);
+      const data = await response.json();
+      setProducts(data.products);
+      setNewOffset(data.newOffset);
+      setTotalProducts(data.totalProducts);
+    };
+
+    fetchProducts();
+  }, [searchParams]);
 
   return (
     <Tabs defaultValue="all">

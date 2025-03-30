@@ -28,8 +28,17 @@ export const products = pgTable('products', {
   availableAt: timestamp('available_at').notNull()
 });
 
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  email: text('email').notNull(),
+  name: text('name'),
+  username: text('username')
+});
+
 export type SelectProduct = typeof products.$inferSelect;
 export const insertProductSchema = createInsertSchema(products);
+
+export const insertUserSchema = createInsertSchema(users);
 
 export async function getProducts(
   search: string,
@@ -67,6 +76,14 @@ export async function getProducts(
   };
 }
 
+export async function getUsers() {
+  return await db.select().from(users);
+}
+
 export async function deleteProductById(id: number) {
   await db.delete(products).where(eq(products.id, id));
+}
+
+export async function deleteUserById(id: number) {
+  await db.delete(users).where(eq(users.id, id));
 }

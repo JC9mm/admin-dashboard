@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "vercel": "vercel --prod",
+    "start:prod": "next start -p 3000"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.9.5",
@@ -44,4 +46,3 @@
     "trailingComma": "none"
   }
 }
-

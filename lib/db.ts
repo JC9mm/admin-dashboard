@@ -14,7 +14,8 @@ import {
 import { count, eq, ilike } from 'drizzle-orm';
 import { createInsertSchema } from 'drizzle-zod';
 
-export const db = drizzle(neon(process.env.POSTGRES_URL!));
+const postgresUrl = process.env.NODE_ENV === 'production' ? process.env.POSTGRES_URL : 'your_development_postgres_url';
+export const db = drizzle(neon(postgresUrl!));
 
 export const statusEnum = pgEnum('status', ['active', 'inactive', 'archived']);
 

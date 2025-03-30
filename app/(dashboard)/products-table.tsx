@@ -20,11 +20,12 @@ import { SelectProduct } from '@/lib/db';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useState, useEffect } from 'react';
 
 export function ProductsTable({
-  products,
-  offset,
-  totalProducts
+  products: initialProducts,
+  offset: initialOffset,
+  totalProducts: initialTotalProducts
 }: {
   products: SelectProduct[];
   offset: number;
@@ -33,6 +34,24 @@ export function ProductsTable({
   let router = useRouter();
   let searchParams = useSearchParams();
   let productsPerPage = 5;
+
+  const [products, setProducts] = useState(initialProducts);
+  const [offset, setOffset] = useState(initialOffset);
+  const [totalProducts, setTotalProducts] = useState(initialTotalProducts);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const search = searchParams.get('q') ?? '';
+      const offset = searchParams.get('offset') ?? 0;
+      const response = await fetch(`/api/products?search=${search}&offset=${offset}`);
+      const data = await response.json();
+      setProducts(data.products);
+      setOffset(data.newOffset);
+      setTotalProducts(data.totalProducts);
+    };
+
+    fetchProducts();
+  }, [searchParams]);
 
   function prevPage() {
     let params = new URLSearchParams(searchParams.toString());

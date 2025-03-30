@@ -8,7 +8,7 @@ export const useProfile = () => {
     const loadProfile = async () => {
       let token = localStorage.getItem("access_token");
 
-      let res = await fetch("https://api.jorgecastillo.net/auth/profile", {
+      let res = await fetch("https://jorgecastillo.net/auth/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -16,7 +16,7 @@ export const useProfile = () => {
         token = await refreshToken();
         if (!token) return;
 
-        res = await fetch("https://api.jorgecastillo.net/auth/profile", {
+        res = await fetch("https://jorgecastillo.net/auth/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
       }

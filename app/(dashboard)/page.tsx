@@ -6,14 +6,15 @@ import { getProducts } from '@/lib/db';
 
 export default async function ProductsPage(
   props: {
-    searchParams: Promise<{ q: string; offset: string }>;
+    searchParams: Promise<{ q: string; offset: string; totalProducts: string }>;
   }
 ) {
   const searchParams = await props.searchParams;
   const search = searchParams.q ?? '';
   const offset = searchParams.offset ?? 0;
-  const { products, newOffset, totalProducts } = process.env.NODE_ENV === 'production'
-    ? await getProducts(search, Number(offset))
+  const totalProducts = searchParams.totalProducts ?? 0;
+  const { products, newOffset } = process.env.NODE_ENV === 'production'
+    ? await getProducts(search, Number(offset), Number(totalProducts))
     : { products: [], newOffset: 0, totalProducts: 0 };
 
   return (

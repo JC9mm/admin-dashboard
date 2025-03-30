@@ -43,7 +43,8 @@ export const insertUserSchema = createInsertSchema(users);
 
 export async function getProducts(
   search: string,
-  offset: number
+  offset: number,
+  totalProducts: number
 ): Promise<{
   products: SelectProduct[];
   newOffset: number | null;
@@ -66,14 +67,14 @@ export async function getProducts(
     return { products: [], newOffset: null, totalProducts: 0 };
   }
 
-  let totalProducts = await db.select({ count: count() }).from(products);
+  let totalProductsResult = await db.select({ count: count() }).from(products);
   let moreProducts = await db.select().from(products).limit(5).offset(offset);
   let newOffset = moreProducts.length >= 5 ? offset + 5 : null;
 
   return {
     products: moreProducts,
     newOffset,
-    totalProducts: totalProducts[0].count
+    totalProducts: totalProductsResult[0].count
   };
 }
 

@@ -34,11 +34,11 @@ export function ProductsTable({
   let productsPerPage = 5;
 
   function prevPage() {
-    router.back();
+    router.push(`/?offset=${offset - productsPerPage}`, { scroll: false });
   }
 
   function nextPage() {
-    router.push(`/?offset=${offset}`, { scroll: false });
+    router.push(`/?offset=${offset + productsPerPage}`, { scroll: false });
   }
 
   return (

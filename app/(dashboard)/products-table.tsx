@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/card';
 import { Product } from './product';
 import { SelectProduct } from '@/lib/db';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -31,14 +31,19 @@ export function ProductsTable({
   totalProducts: number;
 }) {
   let router = useRouter();
+  let searchParams = useSearchParams();
   let productsPerPage = 5;
 
   function prevPage() {
-    router.back();
+    let params = new URLSearchParams(searchParams.toString());
+    params.set('offset', (offset - productsPerPage).toString());
+    router.push(`/?${params.toString()}`, { scroll: false });
   }
 
   function nextPage() {
-    router.push(`/?offset=${offset}`, { scroll: false });
+    let params = new URLSearchParams(searchParams.toString());
+    params.set('offset', offset.toString());
+    router.push(`/?${params.toString()}`, { scroll: false });
   }
 
   return (

@@ -45,6 +45,7 @@ export default async function ProductsPage(
           products={products}
           offset={newOffset ?? 0}
           totalProducts={totalProducts}
+          searchParams={searchParams}
         />
       </TabsContent>
     </Tabs>

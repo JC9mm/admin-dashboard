@@ -62,3 +62,32 @@ pnpm dev
 ```
 
 You should now be able to access the application at http://localhost:3000.
+
+## Deploying to Vercel
+
+To deploy the application to Vercel, you can use the following command:
+
+```bash
+vercel --prod
+```
+
+This will deploy the application to Vercel and make it available at your Vercel domain.
+
+## Setting up Environment Variables in Vercel
+
+To set up environment variables in Vercel, follow these steps:
+
+1. Go to your Vercel dashboard and select your project.
+2. Click on the "Settings" tab.
+3. Scroll down to the "Environment Variables" section.
+4. Add the necessary environment variables as specified in the `.env.example` file.
+
+## Running the Application in Production Mode
+
+To run the application in production mode, use the following command:
+
+```bash
+pnpm start:prod
+```
+
+This will start the application in production mode.

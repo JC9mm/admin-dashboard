@@ -12,7 +12,7 @@ export function SearchInput() {
 
   function searchAction(formData: FormData) {
     let value = formData.get('q') as string;
-    let params = new URLSearchParams({ q: value });
+    let params = new URLSearchParams({ q: value, offset: '0' });
     startTransition(() => {
       router.push(`/?${params.toString()}`, { scroll: false });
     });

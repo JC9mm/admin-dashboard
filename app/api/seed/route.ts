@@ -111,6 +111,56 @@ export async function GET() {
       price: '199.00',
       stock: 175,
       availableAt: new Date()
+    },
+    {
+      id: 11,
+      imageUrl:
+        'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/tablet-1.webp',
+      name: 'Tablet Pro',
+      status: 'active',
+      price: '499.00',
+      stock: 100,
+      availableAt: new Date()
+    },
+    {
+      id: 12,
+      imageUrl:
+        'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/camera-2.webp',
+      name: 'Digital Camera X',
+      status: 'active',
+      price: '599.00',
+      stock: 80,
+      availableAt: new Date()
+    },
+    {
+      id: 13,
+      imageUrl:
+        'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/monitor-3.webp',
+      name: '4K Monitor Ultra',
+      status: 'active',
+      price: '399.00',
+      stock: 60,
+      availableAt: new Date()
+    },
+    {
+      id: 14,
+      imageUrl:
+        'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/keyboard-4.webp',
+      name: 'Mechanical Keyboard Pro',
+      status: 'active',
+      price: '129.00',
+      stock: 150,
+      availableAt: new Date()
+    },
+    {
+      id: 15,
+      imageUrl:
+        'https://uwja77bygk2kgfqe.public.blob.vercel-storage.com/mouse-5.webp',
+      name: 'Gaming Mouse Elite',
+      status: 'active',
+      price: '79.00',
+      stock: 200,
+      availableAt: new Date()
     }
   ]);
 

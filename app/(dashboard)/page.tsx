@@ -25,6 +25,18 @@ export default function ProductsPage({ searchParams }: { searchParams: { q: stri
     fetchProducts();
   }, [searchParams]);
 
+  function prevPage() {
+    let params = new URLSearchParams(searchParams.toString());
+    params.set('offset', (newOffset - 5).toString());
+    window.location.search = params.toString();
+  }
+
+  function nextPage() {
+    let params = new URLSearchParams(searchParams.toString());
+    params.set('offset', newOffset.toString());
+    window.location.search = params.toString();
+  }
+
   return (
     <Tabs defaultValue="all">
       <div className="flex items-center">
@@ -57,6 +69,8 @@ export default function ProductsPage({ searchParams }: { searchParams: { q: stri
           offset={newOffset ?? 0}
           totalProducts={totalProducts}
           searchParams={searchParams}
+          prevPage={prevPage}
+          nextPage={nextPage}
         />
       </TabsContent>
     </Tabs>

@@ -1,8 +1,17 @@
 import { db, products } from 'lib/db';
+import fs from 'fs';
+import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const baseDir = '/opt/build';
+
+  if (!fs.existsSync(baseDir)) {
+    fs.mkdirSync(baseDir, { recursive: true });
+    console.log(`Directory created: ${baseDir}`);
+  }
+
   const existingProducts = await db.select().from(products).limit(1);
 
   if (existingProducts.length > 0) {

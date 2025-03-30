@@ -12,6 +12,9 @@ const nextConfig = {
         search: ''
       }
     ]
+  },
+  experimental: {
+    serverActions: true
   }
 };
 

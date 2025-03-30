@@ -25,11 +25,13 @@ import { useState, useEffect } from 'react';
 export function ProductsTable({
   products: initialProducts,
   offset: initialOffset,
-  totalProducts: initialTotalProducts
+  totalProducts: initialTotalProducts,
+  searchParams: initialSearchParams
 }: {
   products: SelectProduct[];
   offset: number;
   totalProducts: number;
+  searchParams: { q: string; offset: string };
 }) {
   let router = useRouter();
   let searchParams = useSearchParams();

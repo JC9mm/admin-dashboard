@@ -62,3 +62,17 @@ pnpm dev
 ```
 
 You should now be able to access the application at http://localhost:3000.
+
+## Troubleshooting Common Issues
+
+### Database Connection Error
+
+If you encounter a database connection error, ensure that your database URL in the `.env` file is correct and that your database is running.
+
+### Seeding Issues
+
+If the database seeding process fails, make sure that the database schema is correctly set up and that the database is not already seeded. You can check the database for existing entries before running the seeding script again.
+
+### Authentication Issues
+
+If you face issues with authentication, double-check your GitHub OAuth application settings and ensure that the client ID and secret in the `.env` file are correct.

@@ -3,6 +3,14 @@ import { db, products } from 'lib/db';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const existingProducts = await db.select().from(products).limit(1);
+
+  if (existingProducts.length > 0) {
+    return Response.json({
+      message: 'Database is already seeded.'
+    });
+  }
+
   await db.insert(products).values([
     {
       id: 1,

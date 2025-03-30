@@ -18,11 +18,11 @@ export default function Error({
     <main className="p-4 md:p-6">
       <div className="mb-8 space-y-4">
         <h1 className="font-semibold text-lg md:text-2xl">
-          Please complete setup
+          Oops! Something went wrong.
         </h1>
         <p>
-          Inside the Vercel Postgres dashboard, create a table based on the
-          schema defined in this repository.
+          It looks like there was an issue with setting up the database. Please
+          follow the instructions below to resolve the issue.
         </p>
         <pre className="my-4 px-3 py-4 bg-black text-white rounded-lg max-w-2xl overflow-scroll flex text-wrap">
           <code>
@@ -40,6 +40,16 @@ export default function Error({
             {`INSERT INTO users (id, email, name, username) VALUES (1, 'me@site.com', 'Me', 'username');`}
           </code>
         </pre>
+        <p>
+          For more information, please refer to the{' '}
+          <a
+            href="https://vercel.com/docs/storage/vercel-postgres"
+            className="text-blue-500 underline"
+          >
+            documentation
+          </a>
+          .
+        </p>
       </div>
     </main>
   );
